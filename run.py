@@ -1,6 +1,3 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -12,10 +9,24 @@ SCOPE = [
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPE_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT =  gspread.authorize(SCOPE_CREDS)
+GSPREAD_CLIENT = gspread.authorize(SCOPE_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
-sales = SHEET.worksheet('sales')
+#This is the code to check if the API are correct linked:
+#sales = SHEET.worksheet('sales')
+#data = sales.get_all_values()
+#print(data)
 
-data = sales.get_all_values()
-print(data)
+def get_sales_data():
+    """
+    Get sales figures input from the user
+
+    """
+    print("Please enter sales data from the last market.")
+    print("Data should be six numbers, seüerated by commas.")
+    print("Example: 10,20,30,40,50,60")
+
+    data_str = input("Enter your data here: ")
+    print(f"The data provided is {data_str}")
+
+get_sales_data()
